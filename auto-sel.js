@@ -1,8 +1,17 @@
 var Nightmare = require('nightmare');
-var nightmare = Nightmare({show: true});
-var timeout = 1000;
+var nightmare = Nightmare({
+    openDevTools: {
+        mode: 'bottom'
+    },
+    show: true
+});
 
-var courseTeacherList = [
+const config = require('./config.json');
+const username = config.username;
+const password = config.password;
+const timeout = config.timeout;
+
+const courseTeacherList = [
     {4: 135}, // Physics -> YL
     {2: 28}, // Maths -> GYQ
     {6: 166}, // Biology -> ZX
@@ -21,20 +30,20 @@ var courseTeacherList = [
 nightmare
     .goto('http://uat.szymr.com/tanghu')
     .wait('.login-area .btn-sm')
-    .insert('#UserName', 'username')
-    .insert('#Password', 'password')
+    .insert('#UserName', username)
+    .insert('#Password', password)
     .click('.login-area .btn-sm')
-    .wait(timeout)
+    .wait('ul[aria-labelledby="profile"]')
     .goto('http://uat.szymr.com/Tanghu/TeachMgmt/StudentChooseTutor/GetIn')
-    .wait(timeout)
+    .wait('select#VolunteType')
     .then(() => {
-        console.log('Already login! Performing selections!');
+        console.info('Already login and performing selection...');
         courseTeacherList.forEach(ct => {
             var courseId = Object.keys(ct)[0];
             var teacherId = ct[courseId];
             nightmare
                 .select('#VolunteType', courseId)
-                .wait(timeout)
+                .wait('.btnChoose')
                 .click('.btnChoose[data-teacherid="' + teacherId + '"]')
                 .wait(timeout);
         });
@@ -42,7 +51,7 @@ nightmare
         nightmare
             .end()
             .then(function () {
-                console.log("Congratulations! All courses are selected successfully!");
+                console.info("Congratulations! All courses are selected successfully!");
             })
             .catch(function (error) {
                 console.error('Sorry, failed: ', error);

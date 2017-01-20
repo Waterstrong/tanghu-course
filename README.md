@@ -4,12 +4,12 @@ Tanghu Course Auto Selection
 # Get Started
 0. Install [NodeJS](https://nodejs.org/en/) first.
 
-1. Install `NightmareJs` module.
+1. Install node modules.
 ```
-npm install nightmarejs
+npm install
 ```
 
-2. Replace the username and password.
+2. Rename `your_config.json` to `config.json` and fill in your username and password.
 
 3. Run the `auto-sel.js` scripts.
 ```

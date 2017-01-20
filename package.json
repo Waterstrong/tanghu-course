@@ -1,0 +1,22 @@
+{
+  "name": "tanghu-course",
+  "version": "1.0.0",
+  "description": "Tanghu Course Auto Selection",
+  "main": "auto-sel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Waterstrong/tanghu-course.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Waterstrong/tanghu-course/issues"
+  },
+  "homepage": "https://github.com/Waterstrong/tanghu-course#readme",
+  "dependencies": {
+    "nightmare": "^2.9.1"
+  }
+}
