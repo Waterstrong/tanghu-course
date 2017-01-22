@@ -34,6 +34,7 @@ nightmare
     .insert('#Password', password)
     .click('.login-area .btn-sm')
     .wait('ul[aria-labelledby="profile"]')
+    .wait(timeout)
     .goto('http://uat.szymr.com/Tanghu/TeachMgmt/StudentChooseTutor/GetIn')
     .wait('select#VolunteType')
     .then(() => {
@@ -43,7 +44,7 @@ nightmare
             var teacherId = ct[courseId];
             nightmare
                 .select('#VolunteType', courseId)
-                .wait('.btnChoose')
+                .wait('.btnChoose[data-teacherid="' + teacherId + '"]')
                 .click('.btnChoose[data-teacherid="' + teacherId + '"]')
                 .wait(timeout);
         });
